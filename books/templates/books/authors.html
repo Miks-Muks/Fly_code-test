@@ -1,0 +1,10 @@
+{%extends 'books/_base.html'%}
+
+{%block content%}
+<main class="container">
+    {%for author in authors%}
+    <h1><a href="{%url 'books:author_books' author.user.id%}">{{author.user.username}}</a></h1>
+    {%endfor%}
+</main>
+{%endblock%}
+

@@ -1,0 +1,12 @@
+{%extends 'books/_base.html'%}
+{%block content%}
+ <main class="container">
+   <div class="raw">
+     <form class="form-control" action="{%url 'users:sigh_in'%}" method="POST">
+        {%csrf_token%}
+         {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Sign up</button>
+     </form>
+   </div>
+ </main>
+{%endblock%}

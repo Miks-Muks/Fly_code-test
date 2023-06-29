@@ -1,0 +1,11 @@
+{%extends 'books/_base.html'%}
+
+{%block content%}
+<main class="container">
+  <form class="form-control"  action="" method="post">
+    {%csrf_token%}
+  {{form.as_p}}
+    <input class="btn btn-primary" type="submit" value="Ok">
+  </form>
+</main>
+{%endblock%}

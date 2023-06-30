@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Author
+from .models import Author, CustomUser
 from books.models import Books
 
 
@@ -15,3 +15,6 @@ class CounterBook:
 @admin.register(Author)
 class AuthorAdmin(CounterBook, admin.ModelAdmin):
     list_display = ('user', 'get_book_count',)
+
+
+admin.site.register(CustomUser)

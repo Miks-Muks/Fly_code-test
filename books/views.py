@@ -78,10 +78,19 @@ class UpdateBook(UpdateView):
     success_url = '/list'
 
 
+class DeleteCommentView(LoginRequiredMixin, View):
+    login_url = '/users/login'
+
+    def get(self, request, slug, comment_pk):
+        result = AuthorService()
+        result.delete_comment(comment_pk)
+        return redirect('books:detail', slug=slug)
+
+
 class CommentCreate(LoginRequiredMixin, View):
     login_url = '/users/login'
 
-    def post(self, request, pk_book):
+    def post(self, request, slug, pk_book):
         author_service = AuthorService()
         author_service.set_comment(request, pk_book)
-        return redirect('books:list', )
+        return redirect('books:detail', slug=slug)

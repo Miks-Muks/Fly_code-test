@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
 from users.models import Author
-from .models import Books
+from .models import Books, Comment
 from .forms import CommentForm
 
 
@@ -29,6 +29,10 @@ class BaseAuthorService(ABC):
     def set_comment(self):
         ...
 
+
+    @abstractmethod
+    def update_comment(self,):
+        ...
     def delete_comment(self):
         ...
 
@@ -45,6 +49,9 @@ class AuthorService(BaseAuthorService):
             comment.book = Books.objects.get(pk=pk_book)
             comment.save()
 
-
-    def delete_comment(self):
+    def update_comment(self, comment_pk):
         pass
+
+    def delete_comment(self, comment_pk):
+        instance = Comment.objects.filter(pk=comment_pk)
+        instance.delete()
